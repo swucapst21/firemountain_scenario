@@ -3,8 +3,8 @@ import streamlit as st
 from model import WildfirePredictor
 
 # 데이터 로드
-train_data = pd.read_csv('data/final_output_train.csv')
-test_data = pd.read_csv('data/final_output_test.csv')
+train_data = pd.read_csv('_Scenario/data/final_output_train.csv')
+test_data = pd.read_csv('_Scenario/data/final_output_test.csv')
 
 # WildfirePredictor 인스턴스 생성
 target_columns = ['DURATION_MIN', 'MBLZ_FFPWR_CNT', 'LYCRG_FIREMAN_CNT']
@@ -14,7 +14,7 @@ predictor.fit_models()
 
 # Streamlit 애플리케이션
 st.markdown("<h1 style='text-align: center; '>산불 피해 예측 시뮬레이션</h1>", unsafe_allow_html=True)
-st.image('img/mountain.jpg')
+st.image('_Scenario/img/mountain.jpg')
 st.sidebar.header("산불 아이디 입력")
 
 # OBJT_ID 선택 드롭다운
@@ -79,8 +79,6 @@ for prefix, columns in onehot_columns_by_prefix.items():
 if st.sidebar.button("분석 실행"):
     if is_custom_input:
         input_row = pd.DataFrame([user_inputs])
-        # Retrieve specific details for the selected OBJT_ID
-        # Use user inputs for display
         location = "강원도"  # User-specified location
         location_sigungu = [col for col in user_inputs if col.startswith('SIGUNGU_NM_') and user_inputs[col] == 1]
         day = [col for col in user_inputs if col.startswith('OCCU_DAY_') and user_inputs[col] == 1]
@@ -88,7 +86,6 @@ if st.sidebar.button("분석 실행"):
         special_notice = [col for col in user_inputs if col.startswith('SPCNWS_CN_') and user_inputs[col] == 1]
         ignition_place = [col for col in user_inputs if col.startswith('IGN_BHF_') and user_inputs[col] == 1]
 
-        # Display details
         st.write(f"📍 **위치**: {location} {location_sigungu[0].replace('SIGUNGU_NM_', '') if location_sigungu else ''}")
         st.write(f"📅 **요일**: {day[0].replace('OCCU_DAY_', '') if day else ''}")
         st.write(f"☁️ **날씨**: {weather[0].replace('WETHR_', '') if weather else ''}")
@@ -102,7 +99,6 @@ if st.sidebar.button("분석 실행"):
         st.write(f"👩‍🚒 **예상 소방인력 수**: 데이터 부족으로 인한 예측 불가")
     else:
         input_row = selected_row
-        # 입력 데이터 준비
         missing_columns = [col for col in predictor.feature_columns if col not in input_row.columns]
         for col in missing_columns:
             input_row[col] = 0  # 결측된 열은 기본값 0으로 설정
@@ -124,7 +120,7 @@ if st.sidebar.button("분석 실행"):
         st.write(f"🌟 **기상특보 유형**: {special_notice[0].replace('SPCNWS_CN_', '') if special_notice else ''}")
         st.write(f"🔥 **화재 발생 위치**: {ignition_place[0].replace('IGN_BHF_', '') if ignition_place else ''}")
 
-        # 기존 예측 결과 출력
+        # 예측 결과 출력
         st.markdown("<h2 style='text-align: center; '>예측 결과</h2>", unsafe_allow_html=True)
         st.write(f"⏳ **예상 진화 시간**: {predictions['DURATION_MIN']:.2f} 분")
         st.write(f"💧 **예상 소방 설비 사용량**: {predictions['MBLZ_FFPWR_CNT']:.2f} 대")
