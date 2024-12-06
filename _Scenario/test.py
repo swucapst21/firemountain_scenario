@@ -3,8 +3,8 @@ import streamlit as st
 from model import WildfirePredictor
 
 # 데이터 로드
-train_data = pd.read_csv('data/final_output_train.csv')
-test_data = pd.read_csv('data/final_output_test.csv')
+train_data = pd.read_csv('_Scenario/data/final_output_train.csv')
+test_data = pd.read_csv('_Scenario/data/final_output_test.csv')
 
 # WildfirePredictor 인스턴스 생성
 target_columns = ['DURATION_MIN', 'MBLZ_FFPWR_CNT', 'LYCRG_FIREMAN_CNT']
