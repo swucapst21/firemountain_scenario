@@ -164,7 +164,7 @@ if st.sidebar.button("분석 실행"):
         st.write(f"🔥 **화재 발생 위치**: {ignition_place[0].replace('IGN_BHF_', '') if ignition_place else ''}")
 
         # 데이터 부족 안내 메시지 출력
-        st.markdown("<h3 style='text-align: center; '>[예측 결과]</h3>", unsafe_allow_html=True)
+        st.markdown("<h3 style='text-align: center; '>[진화 자원 예측 결과]</h3>", unsafe_allow_html=True)
         st.write(f"⏳ **예상 진화 시간**: 데이터 부족으로 인한 예측 불가")
         st.write(f"💧 **예상 소방 설비 사용량**: 데이터 부족으로 인한 예측 불가")
         st.write(f"👩‍🚒 **예상 소방인력 수**: 데이터 부족으로 인한 예측 불가")
@@ -193,7 +193,7 @@ if st.sidebar.button("분석 실행"):
         st.write(f"🔥 **화재 발생 위치**: {ignition_place[0].replace('IGN_BHF_', '') if ignition_place else ''}")
 
         # 기존 예측 결과 출력
-        st.markdown("<h3 style='text-align: center; '>[예측 결과]</h3>", unsafe_allow_html=True)
+        st.markdown("<h3 style='text-align: center; '>[진화 자원 예측 결과]</h3>", unsafe_allow_html=True)
         st.write(f"⏳ **예상 진화 시간**: {predictions['DURATION_MIN']:.2f} 분")
         st.write(f"💧 **예상 소방 설비 사용량**: {predictions['MBLZ_FFPWR_CNT']:.2f} 대")
         st.write(f"👩‍🚒 **예상 소방인력 수**: {predictions['LYCRG_FIREMAN_CNT']:.2f} 명")
