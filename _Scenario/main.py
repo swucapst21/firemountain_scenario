@@ -8,8 +8,8 @@ from tensorflow.keras.callbacks import EarlyStopping
 
 def prepare_restore_predictor():
     """RestorePredictor를 준비하고 모델을 학습하는 함수"""
-    train_df_cp = pd.read_csv('data/train_df_cp.csv', encoding='cp949')
-    test_df_cp = pd.read_csv('data/test_df_cp.csv', encoding='cp949')
+    train_df_cp = pd.read_csv('_Scenario/data/train_df_cp.csv', encoding='cp949')
+    test_df_cp = pd.read_csv('_Scenario/data/test_df_cp.csv', encoding='cp949')
 
     # RestorePredictor 인스턴스 생성
     predictor = RestorePredictor(seed=42)
@@ -71,8 +71,8 @@ def plot_recovery_rate_streamlit(predictor, test_df_cp, y_test, y_pred, fire_id)
         st.markdown("---")
 
 # 데이터 로드
-train_data = pd.read_csv('data/final_output_train.csv')
-test_data = pd.read_csv('data/final_output_test.csv')
+train_data = pd.read_csv('_Scenario/data/final_output_train.csv')
+test_data = pd.read_csv('_Scenario/data/final_output_test.csv')
 
 # WildfirePredictor 인스턴스 생성
 target_columns = ['DURATION_MIN', 'MBLZ_FFPWR_CNT', 'LYCRG_FIREMAN_CNT']
