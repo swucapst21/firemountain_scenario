@@ -82,7 +82,7 @@ predictor.fit_models()
 
 # Streamlit 애플리케이션
 st.markdown("<h1 style='text-align: center; '>산불 진화 자원 및 복원 예측 시나리오</h1>", unsafe_allow_html=True)
-st.image('img/mountain.jpg')
+st.image('_Scenario/img/mountain.jpg')
 st.sidebar.header("산불 아이디 입력")
 
 # OBJT_ID 선택 드롭다운
