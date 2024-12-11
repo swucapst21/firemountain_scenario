@@ -29,6 +29,13 @@ class WildfirePredictor:
         """결측값 처리 및 전처리 수행."""
         self.train_features = self.knn_imputer.fit_transform(self.train_data[self.feature_columns])
         self.test_features = self.knn_imputer.transform(self.test_data[self.feature_columns])
+
+        # Feature names 저장
+        feature_names = self.feature_columns  # 이미 feature_columns에 정렬된 열 이름 있음
+        
+        # 열 순서를 강제 일치
+        self.train_features = pd.DataFrame(self.train_features, columns=feature_names)
+        self.test_features = pd.DataFrame(self.test_features, columns=feature_names)
     
     def fit_models(self):
         """
