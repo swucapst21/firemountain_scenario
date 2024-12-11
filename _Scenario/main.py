@@ -71,8 +71,8 @@ def plot_recovery_rate_streamlit(predictor, test_df_cp, y_test, y_pred, fire_id)
         st.markdown("---")
 
 # 데이터 로드
-train_data = pd.read_csv('_Scenario/data/final_output_train.csv')
-test_data = pd.read_csv('_Scenario/data/final_output_test.csv')
+train_data = pd.read_csv('_Scenario/data/final_train.csv')
+test_data = pd.read_csv('_Scenario/data/final_test.csv')
 
 # WildfirePredictor 인스턴스 생성
 target_columns = ['DURATION_MIN', 'MBLZ_FFPWR_CNT', 'LYCRG_FIREMAN_CNT']
